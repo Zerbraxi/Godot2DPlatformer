@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://nvteirvmhmlm"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_2rq27"]
+[ext_resource type="Texture2D" uid="uid://cdqw5kifbyiuj" path="res://Sprites/Characters/character_0006.png" id="2_6muxq"]
+[ext_resource type="AudioStream" uid="uid://b72urshfiqgyf" path="res://SoundFX/JumpSound.mp3" id="3_nosu2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hu5q7"]
+height = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_vxsk7"]
+font_size = 50
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 50
+shadow_offset = Vector2(1.1, 0.725)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(-26, -14)
+script = ExtResource("1_2rq27")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6muxq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hu5q7")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(25, 3)
+zoom = Vector2(3, 3)
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nosu2")
+volume_db = -10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreText" type="Label" parent="CanvasLayer"]
+offset_left = 22.0
+offset_top = 11.0
+offset_right = 83.0
+offset_bottom = 34.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_vxsk7")
